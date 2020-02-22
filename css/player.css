@@ -1,0 +1,112 @@
+.player {
+    background: var(--gradiente);
+    width: 100%;
+    height: 720px;
+    margin: 0;
+    position: fixed;
+}
+
+.music-big-cover>img {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.music-big-cover {
+    margin-top: 50%;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.player-text {
+    color: white;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column-reverse;
+}
+
+.player-text>span {
+    font-size: 17pt;
+    text-overflow: clip;
+}
+
+.lyrics {
+    color: white;
+    width: 200%;
+    height: 80%;
+}
+
+.miniplayer {
+    padding-left: 0;
+    z-index: 99999;
+    text-align: left;
+    margin: 0;
+    display: inline;
+    list-style: none;
+    background-color: rgb(43, 41, 41);
+    position: fixed;
+    width: 100%;
+    padding-bottom: 60px;
+    bottom: 0;
+}
+
+.music-cover-div>img {
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    border-radius: 50%;
+}
+
+.music-cover-div {
+    margin: 0;
+    float: left;
+    padding: 7px;
+}
+
+.btn-play-pause {
+    float: left;
+    padding: 7px;
+    margin-top: 5px;
+    font-size: 22pt;
+}
+
+.btn-download {
+    float: left;
+    padding: 7px;
+    padding-left: 17px;
+    margin-top: 5px;
+    font-size: 22pt;
+}
+
+.miniplayer-text {
+    margin-top: 5px;
+    padding: 7px;
+    float: left;
+    width: 50%;
+    overflow: hidden;
+}
+
+.seek {
+    width: 100%;
+}
+
+.seek-bar {
+    height: 3px;
+    width: 100%;
+    background: rgb(51, 50, 50);
+}
+
+.juice {
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, #FC466B 0%, #963694 100%);
+}
+
+.time {
+    float: left;
+}
+
+.total-time {
+    float: right;
+}

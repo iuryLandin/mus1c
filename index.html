@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="theme-dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/player.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <title>MaxMusica</title>
+</head>
+
+<body>
+
+    <audio id="audio" style="display: none;" src="" controls="false"></audio>
+
+
+    <div id="loading" class="loading">
+        <div class="loading-content">
+            <img src="img/loading.svg" width="50" /></div>
+    </div>
+
+    <div class="popup" id="playerPopup">
+        carregando...
+    </div>
+
+
+
+    <ul class="miniplayer">
+
+        <div class="seek">
+            <div class="seek-bar">
+                <div class="juice"></div>
+            </div>
+        </div>
+
+        <div class="music-cover-div">
+            <img class="music-cover" src="http://placehold.jp/50x50.png" />
+        </div>
+
+        <div class="miniplayer-text">
+            <span class="musicTitle">Musica 1</span><br>
+            <small class="artistName"> Artista 1 </small>
+        </div>
+
+        <div class="btn-play-pause" isPlaying='0'>
+            <i class="fa fa-play" onclick="playPause();"></i>
+        </div>
+
+        <div class="btn-download">
+            <i class="fa fa-download"></i>
+        </div>
+
+    </ul>
+
+
+
+    <ul class="navbar navbar-bottom">
+        <li>
+            <a href="#home" class="active">
+                <div class='icon'>
+                    <i class="fa fa-home"></i>
+                </div>
+                <div class='text'>
+                    Início
+                </div>
+            </a>
+        </li>
+
+        <li class="item-middle">
+            <a href="#busca" class="">
+                <div class='icon'>
+                    <i class="fa fa-search"></i>
+                </div>
+                <div class='text'>
+                    Busca
+                </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="#downloads" class="">
+                <div class='icon'>
+                    <i class="fa fa-download"></i>
+                </div>
+                <div class='text'>
+                    Downloads
+                </div>
+            </a>
+        </li>
+    </ul>
+
+    <div class="input" id="inputSearch">
+        <input type="search" placeholder="Pesquisar musica ou artista" class="homeSearch" onfocus="navigate('busca')" onsearch="search(this.value)" />
+    </div>
+
+    <div class="app">
+
+        <div class="page" id="home">
+
+            <main>
+
+                <div class="content">
+                    <h3>Top Gêneros</h3>
+
+                    <div class="slider">
+                        <div class="slide" id="slide-1">
+                            <img src="http://placehold.jp/900x420.png" />
+                        </div>
+                        <div class="slide" id="slide-2">
+                            <img src="http://placehold.jp/900x420.png" />
+                        </div>
+                        <div class="slide" id="slide-3">
+                            <img src="http://placehold.jp/900x420.png" />
+                        </div>
+                        <div class="slide" id="slide-4">
+                            <img src="http://placehold.jp/900x420.png" />
+                        </div>
+                        <div class="slide" id="slide-5">
+                            <img src="http://placehold.jp/900x420.png" />
+                        </div>
+                    </div>
+
+                    <br>
+                    <h3>Top músicas</h3>
+
+                    <div class="card music" onclick="selectTrack(this)" data-music-id='1' data-music-cover='http://placehold.jp/80x80.png' data-music-url="https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3">
+                        <div class="thumb">
+                            <img class='search-thumb' src="http://placehold.jp/80x80.png" />
+                        </div>
+
+                        <div class="info">
+                            <p class="title"> Musica 1 </p>
+                            <p class='legend'>Artista 1</p>
+                        </div>
+                    </div>
+
+                    <div class="card music" onclick="selectTrack(this)" data-music-id='1' data-music-cover='http://placehold.jp/80x80.png' data-music-url="">
+                        <div class="thumb">
+                            <img class='search-thumb' src="http://placehold.jp/80x80.png" />
+                        </div>
+
+                        <div class="info">
+                            <p class="title"> Musica 2 </p>
+                            <p class='legend'>Artista 2</p>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+        <br><br><br><br>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+    <!-- não alterar os js abaixo-->
+    <script src="js/player.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/functions.js"></script>
+
+    <!-- esse pode alterar, são apenas exemplos e testes -->
+    <script src="js/response.js"></script>
+    <script src="js/api.js"></script>
+
+
+</body>
+
+</html>
