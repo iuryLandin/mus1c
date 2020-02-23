@@ -272,6 +272,10 @@ main {
     left: 35%;
 }
 
+#top-music-list {
+    margin-bottom: 80px;
+}
+
 @keyframes moment-on {
     from {
         opacity: 1;

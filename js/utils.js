@@ -34,7 +34,7 @@ function myFunction() {
 
 $(document).ready(function() {
     $("#loading").hide();
-    $("#playerPopup").load('./pages/player.html');
+    $("#playerPopup").load('./pages/player');
     escrever();
     let temp = getCurrentMusic();
     setCurrentMusic(temp);
@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 
 function popup() {
-    //$("#playerPopup").load('./pages/player.html');
+    //$("#playerPopup").load('./pages/player');
     $("#playerPopup").fadeIn();
 }
 
@@ -56,12 +56,12 @@ function closePopup() {
 
 function navigateSelections(page) {
     if (page === 'home') {
-        location = './index.html';
+        location = '/   ';
         return false;
     } else if (page === 'return') {
         page = sessionStorage.getItem('backPage');
     } else {
-        page = 'pages/' + page + '.html';
+        page = `pages/${page}`;
     }
 
     return page;
@@ -75,10 +75,10 @@ function navigate(page) {
 
     $(".app").load(page, function(response, status, xhr) {
         loading(false);
-        if (status == 'error') {
-            alert("Erro: " + xhr.status + "\n \n  A página solicitada não está disponível no momento!");
-            navigate('home');
-        }
+        // if (status == 'error') {
+        //     alert("Erro: " + xhr.status + "\n \n  A página solicitada não está disponível no momento!");
+        //     navigate('home');
+        // }
         $('.app').fadeIn();
         return false;
     });
