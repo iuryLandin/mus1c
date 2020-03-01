@@ -1,0 +1,20 @@
+.loading, .loading-content {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.loading {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+}
+
+.loading-content {
+    background-color: rgba(0, 0, 0, 0.4);
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100px;
+}

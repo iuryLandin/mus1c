@@ -13,31 +13,34 @@ function loading(status) {
 }
 
 // When the user scrolls the page, execute myFunction
-window.onscroll = function() { myFunction() };
+// window.onscroll = function() { myFunction() };
 
 // Get the header
-var header = document.getElementById("inputSearch");
+// var header = document.getElementById("inputSearch");
 
 // Get the offset position of the navbar
-var sticky = header.offsetTop;
+// var sticky = header.offsetTop;
 
 // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function myFunction() {
-    if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-    } else {
-        header.classList.remove("sticky");
-    }
-}
+// function myFunction() {
+//     if (window.pageYOffset > sticky) {
+//         header.classList.add("sticky");
+//     } else {
+//         header.classList.remove("sticky");
+//     }
+// }
 
 
 
 $(document).ready(function() {
-    $("#loading").hide();
+    loading(false)
     $("#playerPopup").load('./pages/player');
     escrever();
-    let temp = getCurrentMusic();
-    setCurrentMusic(temp);
+    const temp = getCurrentMusic();
+    if(temp) {
+        setCurrentMusic(temp);
+        playPause(2);
+    }
     sessionStorage.setItem('backPage', null);
 });
 
@@ -45,41 +48,53 @@ $(document).ready(function() {
 function popup() {
     //$("#playerPopup").load('./pages/player');
     $("#playerPopup").fadeIn();
+    $('#miniplayer-container').hide()
 }
 
 function closePopup() {
     $(".popup").fadeOut();
+    $('#miniplayer-container').show()
 }
 
 
 
 
-function navigateSelections(page) {
-    if (page === 'home') {
-        location = '/   ';
-        return false;
-    } else if (page === 'return') {
-        page = sessionStorage.getItem('backPage');
-    } else {
-        page = `pages/${page}`;
-    }
 
-    return page;
-}
 
 function navigate(page) {
-    $('.app').hide();
+    // Edição do Júlio
+    for (const item of document.querySelectorAll('.item')) {
+        item.classList.remove('active')
+    }
+    document.querySelector(`.${page}`).classList.add('active')
+    if (page == 'busca') document.getElementById('searchbar').focus()
+    //Fim da Edição do Júlio
+    
     loading(true);
+    $('.app').hide();
     page = navigateSelections(page)
     sessionStorage.setItem('backPage', page);
 
     $(".app").load(page, function(response, status, xhr) {
         loading(false);
-        // if (status == 'error') {
-        //     alert("Erro: " + xhr.status + "\n \n  A página solicitada não está disponível no momento!");
-        //     navigate('home');
-        // }
+        if (status == 'error') {
+            alert("Erro: " + xhr.status + "\n \n  A página solicitada não está disponível no momento!");
+            navigate('home');
+        }
         $('.app').fadeIn();
         return false;
     });
+
+    function navigateSelections() {
+        if (page === 'home') {
+            location.reload()
+            return 0
+        } else if (page === 'return') {
+            page = sessionStorage.getItem('backPage');
+        } else {
+            page = `pages/${page}`;
+        }
+    
+        return page;
+    }
 }

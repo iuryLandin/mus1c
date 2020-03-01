@@ -1,6 +1,6 @@
  $('.miniplayer-text').on('click', function() {
      escrever();
-     $(this).parent().toggle();
+     $('#player').toggle();
      popup('player');
 
  });
@@ -13,7 +13,7 @@
  }
 
  function showMiniPlayer() {
-     $('.miniplayer').toggle();
+     $('#player').toggle();
  }
 
 
@@ -24,9 +24,10 @@
  });
 
  function setCurrentMusic(music) {
-     localStorage.setItem('currentMusic', JSON.stringify(music));
-     player.add(music.musicUrl);
-     player.pause();
+    localStorage.setItem('currentMusic', JSON.stringify(music));
+    player.add(music.musicUrl);
+    player.play();
+    return player
  }
 
  function getCurrentMusic() {
@@ -34,16 +35,58 @@
  }
 
 
+ const musicPlayer = document.getElementById('audio')
 
- function selectTrack(el) {
-     $(".btn-play-pause").attr('isPlaying', '1');
-     let musicUrl = $(el).attr('data-music-url');
-     let musicId = $(el).attr('data-music-id');
-     let img = $(el).attr('data-music-cover');
-     let musicTitle = $(el).children('.info').children('.title').text();
-     let musicArtist = $(el).children('.info').children('.legend').text();
+ function selectTrack(index) {
+    localStorage.setItem('currentMusicIndex', index)
 
-     let music = { id: musicId, musicUrl: musicUrl, title: musicTitle, artist: musicArtist, cover: img };
-     setCurrentMusic(music);
-     escrever();
- }
+    musicPlayer.pause()
+
+    let playListToReproduce = [];
+
+    for(const music of JSON.parse(sessionStorage.getItem('PlaylistOnScreen'))) {
+        playListToReproduce.push({
+            id: music.track.id,
+            musicUrl: music.track.progressive_download_url,
+            title: music.track.title,
+            artist: music.track.display_artist,
+            cover: music.track.cover_artwork_uri
+        })
+    }
+
+    const musicToReproduce = playListToReproduce[index];
+    
+    localStorage.setItem('currentPlaylist', JSON.stringify(playListToReproduce))
+
+    playPause(2);
+
+    setCurrentMusic(musicToReproduce);
+    escrever();
+
+    musicPlayer.play()
+}
+
+function changeTrack(index) {
+    localStorage.setItem('currentMusicIndex', index);
+    
+    musicPlayer.pause();
+
+    const playListToReproduce = JSON.parse(localStorage.getItem('currentPlaylist'));
+    let musicToReproduce = playListToReproduce[index];
+
+    if (!musicToReproduce) {
+        musicToReproduce = playListToReproduce[0];
+        localStorage.setItem('currentMusicIndex', 0);
+        setCurrentMusic(musicToReproduce);
+
+        musicPlayer.pause();
+        playPause(1);
+    }else{
+        setCurrentMusic(musicToReproduce);
+        musicPlayer.play()
+        playPause(2);
+    }
+        
+    escrever();
+    
+}

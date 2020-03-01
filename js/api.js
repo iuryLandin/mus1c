@@ -10,6 +10,8 @@ function search(q) {
         url: API + 'search?q=' + q,
         type: "GET"
     }).done(function(resposta) {
+        sessionStorage.setItem('PlaylistOnScreen', JSON.stringify(resposta.items))
+        
         let r = mostrarResultadoBusca(resposta);
 
     }).fail(function(jqXHR, textStatus) {

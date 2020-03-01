@@ -1,16 +1,17 @@
+import { get, set } from './frameworks/czark.js'
 import Axios from './frameworks/Axios.js'
 import api from './utils/Endpoints.js'
-import { get } from './frameworks/czark.js'
 
 const principal = async () => {
     loading(true)
-
-    const genres = await getGenres()
-    const topMusics = await getTopMusics()
     
+    const genres = await getGenres()
     showGenresOnScreen()
+    
+    const topMusics = await getTopMusics()
+    saveTopMusicsToSession()
     showTopMusicsOnScreen()
-
+    
     loading(false)
     //End of Principal
 
@@ -31,15 +32,17 @@ const principal = async () => {
     function showGenresOnScreen() {
         const genresList = get.Id('genres-list')
         
-        for(const item of genres.items) {
-            const genre = createGenre(item.genre)
-
-            genresList.insertAdjacentHTML('beforeend', genre)
+        if (genresList) {
+            for(const item of genres.items) {
+                const genre = createGenre(item.genre)
+    
+                genresList.insertAdjacentHTML('beforeend', genre)
+            }
         }
 
         function createGenre(item) {
             return (
-               `<div class="slide">
+               `<div class="slide genre-option">
                     <img src='${item.cover_artwork_uri}'/>
                 </div>`
             )
@@ -49,17 +52,21 @@ const principal = async () => {
     function showTopMusicsOnScreen() {
         const topMusicsList = get.Id('top-music-list')
 
-        for(const item of topMusics.items) {
-            const music = createMusicTag(item.track)
+        let index = 0
 
-            topMusicsList.insertAdjacentHTML('beforeend', music)
+        if (topMusicsList) {
+            for(const item of topMusics.items) {
+                const music = createMusicTag(item.track, index++)
+    
+                topMusicsList.insertAdjacentHTML('beforeend', music)
+            }
         }
 
-        function createMusicTag(item) {
+        function createMusicTag(item, i) {
             return (
-               `<div class="card music" onclick="selectTrack(this)" data-music-id='1' data-music-cover='${item.cover_artwork_uri}' data-music-url="${item.progressive_download_url}">
+               `<div class="card music" onclick="selectTrack(${i})">
                     <div class="thumb">
-                        <img class='search-thumb' src="${item.cover_artwork_uri}" />
+                        <img class='music-thumb' src="${item.cover_artwork_uri}" />
                     </div>
 
                     <div class="info">
@@ -69,6 +76,10 @@ const principal = async () => {
                 </div>`
             )
         }
+    }
+
+    function saveTopMusicsToSession() {
+        set.Session('PlaylistOnScreen', topMusics.items)
     }
 }
 

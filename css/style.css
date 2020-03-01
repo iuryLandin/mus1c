@@ -1,207 +1,83 @@
+@charset "UTF-8";
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import './loading.css';
+
+@import './searchbar.css';
+@import './musicCard.css';
+@import './player.css';
+@import './slider.css';
+@import './menu.css';
+
+audio { display: none !important }
+
 :root {
-    --cor-primaria: #963694;
+    --primary: #963694;
     --gradiente: linear-gradient(90deg, #FC466B 0%, #963694 100%);
     --theme-dark: rgb(32, 32, 32);
 }
 
-body {
-    margin: 0;
+* {
     font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
-.bg {
-    background: linear-gradient(90deg, #FC466B 0%, #963694 100%);
+.active {
+    color: var(--primary);
+}
+
+.material-icons {
+    cursor: pointer;
+    font-size: 32px !important;
+}
+
+.fa {
+    cursor: pointer;
 }
 
 .theme-dark {
     background-color: var(--theme-dark);
-    color: var(--cor-primaria);
+    color: var(--primary);
 }
 
-.btn {
-    text-decoration: none;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border-radius: 5px;
-    font-size: 15px;
-    border: solid 1px;
-}
-
-.btn-primario {
-    color: white;
-    background: var(--cor-primaria);
-    border: var(--cor-primaria) solid 1px;
-}
-
-.btn-gradiente {
-    color: white;
-    background: var(--gradiente);
-    border: var(--gradiente) solid 1px;
-}
-
-header {
-    position: fixed;
-    width: 100%;
-    padding: 20px;
-    color: white;
-    background: #963694;
-    box-shadow: 0 0 8px black;
-}
-
-header .logo {
-    font-size: 14pt;
-    padding-left: 12px;
-}
-
-main {
-    padding-top: 13px;
-}
-
-.loginForm {
-    color: white;
-    bottom: 0%;
-    text-align: center;
-}
-
-.loginForm .campo {
-    width: 70%;
-    padding: 5px;
-    font-size: 15px;
-    margin-bottom: 20px;
-    font-family: 'Montserrat';
-    color: #963694;
-}
-
-.middle {
-    padding: 12px;
-    align-content: center;
-    align-items: center;
-    margin-top: 30%;
-}
-
-.content {
-    margin: 10px;
-    width: 90%;
-    text-align: justify;
-    clear: both;
-}
-
-main {
+.app {
+    margin-top: 10px;
     transition-duration: .5s;
 }
 
-.input {
-    background: #ffffff;
-    text-align: center;
-    width: 100%;
-    padding-top: 12px;
-    padding-bottom: 12px;
+h3 { text-indent: 8px }
+
+body {
+    display: flex;
+    flex-direction: column;
 }
 
-.sticky {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.288);
-    position: fixed;
-    top: 0;
+.page {
+    margin-top: 100px;
+    margin-bottom: 140px;
 }
 
-.homeSearch {
-    border: #9636948e solid 1px;
-    border-radius: 5px;
-    width: 90%;
-    padding: 12px;
-    padding-left: 40px;
-    background-image: url('../img/icon-search.png');
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
-    background-position: left center;
+.page-block {
+    padding-top: 35px;
 }
 
-.card {
-    margin-top: 3%;
-    padding: 10px;
-    width: 100%;
-    height: 80px;
-    background: white;
-    border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.288);
+.genre-option {
+    cursor: pointer;
 }
 
-.info .title {
-    font-weight: bold;
-    font-size: 15px;
+.home-content {
+    margin: 10px;
 }
 
-.info .legend {
-    color: #333;
-    font-size: 13px;
-}
-
-.thumb {
-    float: left;
-    padding-right: 12px;
-}
-
-.thumb img {
-    width: 80px;
-    height: 80px;
-}
-
-.navbar-top {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.288);
-    padding: 20px;
-    top: 0;
-}
-
-.navbar-bottom {
-    padding-top: 20px;
-    bottom: 0;
-}
-
-.navbar .icon {
-    font-size: 20px;
-    clear: both;
-}
-
-.navbar .text {
-    font-size: 11px;
-    clear: both;
-}
-
-.navbar {
-    width: 100%;
-    z-index: 99999;
-    text-align: left;
-    margin: 0;
-    display: inline;
-    list-style: none;
-    background-color: white;
-    position: fixed;
-}
-
-.top {
-    top: 0 !important;
-}
-
-.navbar li {
-    text-align: center;
-    display: inline-block;
-}
-
-.navbar>.item-middle {
-    padding-left: 25%;
-    padding-right: 25%;
-}
-
-.navbar a {
-    color: #333;
-    text-decoration: none;
-}
-
-.active div {
-    color: #963694;
-    font-weight: bold;
+#top-music-list {
+    margin-bottom: 80px;
 }
 
 .cover {
@@ -227,30 +103,10 @@ main {
     margin: 0;
 }
 
-.popup {
-    position: fixed;
-    z-index: 999;
-    margin: 0;
-    left: 0;
-    padding: 0;
-    overflow: scroll;
-    background-color: white;
-    display: none;
-}
+
 
 
 /* Modal (background) */
-
-.loading {
-    position: fixed;
-    z-index: 999;
-    left: 40%;
-    top: 40%;
-    border-radius: 10px;
-    padding: 5px;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
 
 #splash {
     background: linear-gradient(90deg, #FC466B 0%, #963694 100%);
@@ -270,10 +126,6 @@ main {
     position: fixed;
     top: 50%;
     left: 35%;
-}
-
-#top-music-list {
-    margin-bottom: 80px;
 }
 
 @keyframes moment-on {
@@ -300,5 +152,3 @@ main {
         display: none;
     }
 }
-
-@media screen and (max-width: 450px) {}
