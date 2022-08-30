@@ -1,11 +1,11 @@
 async function mostrarResultadoBusca(data) {
     let obj = data;
 
-    let max = obj.items.length;
+    let max = obj?.length;
     var html = '';
     let index = 0;
     if (obj) {
-        for(const item of obj.items) {
+        for (const item of obj) {
             html += createMusicTag(item.track, index++)
         }
     }
@@ -14,7 +14,7 @@ async function mostrarResultadoBusca(data) {
 
     function createMusicTag(item, i) {
         return (
-           `<div class="card music" onclick="selectTrack(${i})">
+            `<div class="card music" onclick="selectTrack(${i})">
                 <div class="thumb">
                     <img class='music-thumb' src="${item.cover_artwork_uri}" />
                 </div>

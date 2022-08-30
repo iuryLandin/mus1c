@@ -4,14 +4,14 @@ import api from './utils/Endpoints.js'
 
 const principal = async () => {
     loading(true)
-    
+
     const genres = await getGenres()
     showGenresOnScreen()
-    
+
     const topMusics = await getTopMusics()
     saveTopMusicsToSession()
     showTopMusicsOnScreen()
-    
+
     loading(false)
     //End of Principal
 
@@ -32,18 +32,18 @@ const principal = async () => {
 
     function showGenresOnScreen() {
         const genresList = get.Id('genres-list')
-        
+
         if (genresList) {
-            for(const item of genres.items) {
+            for (const item of genres.items) {
                 const genre = createGenre(item.genre)
-    
+
                 genresList.insertAdjacentHTML('beforeend', genre)
             }
         }
 
         function createGenre(item) {
             return (
-               `<div class="slide genre-option">
+                `<div class="slide genre-option">
                     <img src='${item.cover_artwork_uri}'/>
                 </div>`
             )
@@ -56,16 +56,16 @@ const principal = async () => {
         let index = 0
 
         if (topMusicsList) {
-            for(const item of topMusics.items) {
+            for (const item of topMusics) {
                 const music = createMusicTag(item.track, index++)
-    
+
                 topMusicsList.insertAdjacentHTML('beforeend', music)
             }
         }
 
         function createMusicTag(item, i) {
             return (
-               `<div class="card music" onclick="selectTrack(${i})">
+                `<div class="card music" onclick="selectTrack(${i})">
                     <div class="thumb">
                         <img class='music-thumb' src="${item.cover_artwork_uri}" />
                     </div>
@@ -80,8 +80,8 @@ const principal = async () => {
     }
 
     function saveTopMusicsToSession() {
-        set.Session('PlaylistOnScreen', topMusics.items)
+        set.Session('PlaylistOnScreen', topMusics)
     }
 }
 
-;(principal)()
+    ; (principal)()

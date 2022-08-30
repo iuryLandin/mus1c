@@ -1,4 +1,4 @@
-const API = "https://qgeletronicos.com/musicapi/";
+const API = "https://insta-music-api.herokuapp.com";
 
 function search(q) {
     if (q.length < 4) {
@@ -7,14 +7,14 @@ function search(q) {
 
 
     $.ajax({
-        url: API + 'search?q=' + q,
+        url: API + '/search?q=' + q,
         type: "GET"
-    }).done(function(resposta) {
-        sessionStorage.setItem('PlaylistOnScreen', JSON.stringify(resposta.items))
-        
+    }).done(function (resposta) {
+        sessionStorage.setItem('PlaylistOnScreen', JSON.stringify(resposta))
+
         let r = mostrarResultadoBusca(resposta);
 
-    }).fail(function(jqXHR, textStatus) {
+    }).fail(function (jqXHR, textStatus) {
         console.log("Request failed: " + textStatus);
     });
 }
