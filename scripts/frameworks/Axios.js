@@ -1,6 +1,6 @@
 const Axios = axios
     .create({
-        baseURL: 'https://qgeletronicos.com/musicapi'
+        baseURL: 'https://insta-music-api.herokuapp.com'
     })
 
 export default Axios

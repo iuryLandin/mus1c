@@ -3,7 +3,7 @@ const api = {
     genres: '/genre',
     genre: '/genre?genre=',
     lyrics: '/lyrics?id=',
-    mood: '/mood'
+    trend: '/trend'
 }
 
 export default api

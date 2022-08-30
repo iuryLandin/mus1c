@@ -16,6 +16,7 @@ const principal = async () => {
     //End of Principal
 
     async function getGenres() {
+        return false;
         return await Axios
             .get(api.genres)
             .then(res => res.data)
@@ -24,7 +25,7 @@ const principal = async () => {
 
     async function getTopMusics() {
         return await Axios
-            .get(api.search)
+            .get(api.trend)
             .then(res => res.data)
             .catch(console.warn)
     }
